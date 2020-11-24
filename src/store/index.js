@@ -12,7 +12,8 @@ const state = {
 	itemNum: 1, // 第几题
 	allTime: 0,  //总共用时
 	timer: '', //定时器
-	itemDetail: [{
+	itemDetail: [
+		{//第一题
 		"topic_id": 20,
 		"active_topic_id": 4,
 		"type": "ONE",
@@ -22,28 +23,32 @@ const state = {
 		"active_topic_phase": "第一周",
 		"active_start_time": "1479139200",
 		"active_end_time": "1482163200",
-		"topic_answer": [{
+		"topic_answer": [{//第一题答案数组
 			"topic_answer_id": 1,
 			"topic_id": 20,
 			"answer_name": "答案aaaa",
 			"is_standard_answer": 0
-		}, {
+		}, 
+		{//
 			"topic_answer_id": 2,
 			"topic_id": 20,
 			"answer_name": "正确答案",
 			"is_standard_answer": 0
-		}, {
+		}, 
+		{
 			"topic_answer_id": 3,
 			"topic_id": 20,
 			"answer_name": "答案cccc",
 			"is_standard_answer": 0
-		}, {
+		}, 
+		{
 			"topic_answer_id": 4,
 			"topic_id": 20,
 			"answer_name": "答案dddd",
 			"is_standard_answer": 1
 		}]
-	}, {
+	}, 
+	{//第二题
 		"topic_id": 21,
 		"active_topic_id": 4,
 		"type": "MORE",
@@ -74,7 +79,8 @@ const state = {
 			"answer_name": "答案D",
 			"is_standard_answer": 0
 		}]
-	}, {
+	}, 
+	{//第三题
 		"topic_id": 21,
 		"active_topic_id": 4,
 		"type": "MORE",
@@ -105,7 +111,8 @@ const state = {
 			"answer_name": "正确答案",
 			"is_standard_answer": 0
 		}]
-	}, {
+	}, 
+	{//第四题
 		"topic_id": 21,
 		"active_topic_id": 4,
 		"type": "MORE",
@@ -136,7 +143,8 @@ const state = {
 			"answer_name": "C说的不对",
 			"is_standard_answer": 0
 		}]
-	}, {
+	}, 
+	{//第五题
 		"topic_id": 21,
 		"active_topic_id": 4,
 		"type": "MORE",

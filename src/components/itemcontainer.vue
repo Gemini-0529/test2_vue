@@ -5,16 +5,19 @@
     		<span class="num_tip" v-if="fatherComponent == 'item'">题目{{itemNum}}</span>
     	</header>
     	<div v-if="fatherComponent == 'home'" >
-    		<div class="home_logo item_container_style"></div>
-    		<router-link to="item" class="start button_style" ></router-link>
+    		<div class="item_container_style"></div>
+			<!-- 开始按钮 -->
+    		<router-link to="item" class="button_style" ></router-link>
     	</div>
     	<div v-if="fatherComponent == 'item'" >
     		<div class="item_back item_container_style">
     			<div class="item_list_container" v-if="itemDetail.length > 0">
     				<header class="item_title">{{itemDetail[itemNum-1].topic_name}}</header>
+					<!-- 题目列表 -->
     				<ul>
-    					<li  v-for="(item, index) in itemDetail[itemNum-1].topic_answer" @click="choosed(index, item.topic_answer_id)" class="item_list">
-    						<span class="option_style" v-bind:class="{'has_choosed':choosedNum==index}">{{chooseType(index)}}</span>
+						<!--                                               各组答案数组                                                答案序号-->
+    					<li  v-for="(item, index) in itemDetail[itemNum-1].topic_answer" :key="index" @click="choosed(index, item.topic_answer_id)" class="item_list">
+    						<span class="option_style" :class="{'has_choosed' :choosedNum==index}">{{chooseType(index)}}</span>
     						<span class="option_detail">{{item.answer_name}}</span>
     					</li>
     				</ul>
@@ -45,6 +48,7 @@ export default {
   		'timer', //计时器
 	]),
   	methods: {
+		//有其他方法，就需要加...
   		...mapActions([
   			'addNum', 'initializeData',
   		]),
@@ -58,8 +62,8 @@ export default {
   				alert('您还没有选择答案哦')
   			}
   		},
-  		//索引0-3对应答案A-B
-	  	chooseType: type => {
+  		//索引0-3对应答案A-D
+	  	chooseType: function(type){
 	  		switch(type){
 	  			case 0: return 'A';
 	  			case 1: return 'B';
@@ -70,14 +74,14 @@ export default {
 	  	//选中的答案信息
 	  	choosed(type,id){
 	  		this.choosedNum = type;
-	  		this.choosedId = id;
+			this.choosedId = id;
 	  	},
-	  	//到达最后一题，交卷，请空定时器，跳转分数页面
+	  	//到达最后一题，交卷，请空定时器，
 	  	submitAnswer(){
 	  		if (this.choosedNum !== null) {
 	  			this.addNum(this.choosedId)
 	  			clearInterval(this.timer)
-	  			this.$router.push('score')
+	  			this.$router.push('score')//跳转分数页面
   			}else{
   				alert('您还没有选择答案哦')
   			}
@@ -94,6 +98,7 @@ export default {
 </script>
 
 <style lang="less">
+//右上云
 	.top_tips{
 		position: absolute;
 		height: 7.35rem;
@@ -112,10 +117,12 @@ export default {
 			font-size: 0.6rem;
 			font-family: '黑体';
 			font-weight: 600;
-			color: #a57c50;
+			color: white;
 			text-align: center;
 		}
 	}
+
+	//中心图片
 	.item_container_style{
 		height: 11.625rem;
 		width: 13.15rem;
@@ -123,20 +130,22 @@ export default {
 		position: absolute;
 		top: 4.1rem;
 		left: 1rem;
-	}	
-	.home_logo{
 		background-image: url(../images/1-2.png);
 		background-size: 13.142rem 100%;
-		background-position: right center;
 	}
+	// .home_logo{
+
+	// }
 	.item_back{
 		background-image: url(../images/2-1.png);
 		background-size: 100% 100%;
 	}
+	//开始按钮
 	.button_style{
         display: block;
         height: 2.1rem;
         width: 4.35rem;
+        background-image: url(../images/1-4.png);
         background-size: 100% 100%;
         position: absolute;
         top: 16.5rem;
@@ -144,12 +153,14 @@ export default {
         margin-left: -2.4rem;
         background-repeat: no-repeat;
 	}
-	.start{
-        background-image: url(../images/1-4.png);
-    }
+	// .start{
+	// }
+	
+
     .next_item{
     	background-image: url(../images/2-2.png);
-    }
+	}
+	// 提交按钮
     .submit_item{
     	background-image: url(../images/3-1.png);
     }
@@ -163,8 +174,9 @@ export default {
     }
 	.item_title{
 		font-size: 0.65rem;
-		color: #00e;
+		color: white;
 		line-height: 0.7rem;
+		font-weight: bold;
 	}
 	.item_list{
 		font-size: 0;
@@ -173,7 +185,7 @@ export default {
 		span{
 			display: inline-block;
 			font-size: 0.6rem;
-			color: #00e;
+			color: white;
 			vertical-align: middle;
 		}
 		.option_style{
